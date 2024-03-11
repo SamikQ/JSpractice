@@ -1,38 +1,68 @@
-'use strict';
+"use strict";
 
-/* Задание на урок:
+// 3) Создать функцию writeYourGenres в которой пользователь будет 3 раза отвечать на вопрос
+// "Ваш любимый жанр под номером ${номер по порядку}". Каждый ответ записывается в массив данных
+// genres
 
-4) Потренироваться и переписать цикл еще двумя способами*/
-
-const numberOfFilms = prompt('How many movies did you watch?', 'type your answer');
+let numberOfFilms;
 
 const personalMovieDB = {
-    count: numberOfFilms,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false
+  count: numberOfFilms,
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false,
 };
 
-if (personalMovieDB.count < 10) {
-    alert('You wathced less films than avarage person');
-} else if (personalMovieDB.count < 30 && personalMovieDB.count >= 10) {
-    alert('you are avarage watcher');
-} else if (personalMovieDB.count > 30) {
-    alert('You are awesome');
-} else {
-    alert('mistake happened');
+start();
+detectPersonalLevel();
+rememberMyFilms();
+showMyDB();
+writeYourGenres();
+
+function showMyDB(hidden) {
+  if (!hidden) {
+    return console.log(personalMovieDB);
+  }
 }
 
-for (let i = 0; i <= 1; i++) {
-    const a = prompt('Last watched movie?', ''),
-        b = prompt('Rate last movie?', '');
-    if (a === '' || b === '' || a.length >= 50) {
-        alert('Please, type your movies');
-        i--;
+function start() {
+  numberOfFilms = +prompt("How many movies did you watch?", "type your answer");
+
+  while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
+    numberOfFilms = +prompt(
+      "How many movies did you watch?",
+      "type your answer"
+    );
+  }
+}
+
+function detectPersonalLevel() {
+  if (numberOfFilms < 10) {
+    alert("You wathced less films than avarage person");
+  } else if (numberOfFilms < 30 && numberOfFilms >= 10) {
+    alert("you are avarage watcher");
+  } else if (numberOfFilms > 30) {
+    alert("You are awesome");
+  }
+}
+
+function rememberMyFilms() {
+  for (let i = 0; i <= 1; i++) {
+    const a = prompt("Last watched movie?", ""),
+      b = prompt("Rate last movie?", "");
+    if (a === "" || b === "" || a.length >= 50) {
+      alert("Please, type your movies");
+      i--;
     } else {
-        personalMovieDB.movies[a] = b;
+      personalMovieDB.movies[a] = b;
     }
+  }
 }
 
-console.log(personalMovieDB);
+function writeYourGenres() {
+  for (let i = 0; i <= 2; i++) {
+    const genre = prompt(`Type your favorite genre under no ${i+1}`, '');
+    personalMovieDB.genres[i] = genre;
+  }
+}

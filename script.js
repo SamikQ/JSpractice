@@ -1,17 +1,30 @@
-/* Задание на урок:
+"use strict";
 
-1) Автоматизировать вопросы пользователю про фильмы при помощи цикла
+const numberOfFilms = +prompt("How many movies did you watch?", "");
 
-2) Сделать так, чтобы пользователь не мог оставить ответ в виде пустой строки,
-отменить ответ или ввести название фильма длинее, чем 50 символов. Если это происходит - 
-возвращаем пользователя к вопросам опять
+const personalMovieDB = {
+  count: numberOfFilms,
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false,
+};
 
-3) При помощи условий проверить  personalMovieDB.count, и если он меньше 10 - вывести сообщение
-"Просмотрено довольно мало фильмов", если от 10 до 30 - "Вы классический зритель", а если больше - 
-"Вы киноман". А если не подошло ни к одному варианту - "Произошла ошибка"
+for (let i = 0; i <= 1; i++) {
+  const a = prompt("last watched movie?", ""),
+    b = prompt("rate it", "");
+  if (a.length === 0 || b.length === 0 || a.length > 50) {
+    i--;
+    alert('type your movies')
+  } else {
+    personalMovieDB.movies[a] = b;
+    alert('thanks');
+  }
+}
 
-4) Потренироваться и переписать цикл еще двумя способами*/
+function returnNeighboringNumbers(num) {
+  let a = [--num, num, ++num];
+  console.log(a);
+};
 
-'use strict';
-
-// Код возьмите из предыдущего домашнего задания
+returnNeighboringNumbers(5);
